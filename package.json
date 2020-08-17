@@ -1,0 +1,27 @@
+{
+  "name": "todo-api",
+  "version": "2.0.0",
+  "description": "A simple Todo REST API",
+  "main": "start.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit",
+    "start": "nodemon start.js --exec babel-node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/node": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.8.6",
+    "axios": "^0.19.2",
+    "jest": "^26.2.2",
+    "nodemon": "^2.0.2"
+  }
+}
