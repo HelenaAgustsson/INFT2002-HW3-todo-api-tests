@@ -4,13 +4,13 @@ A simple Todo REST API including unit tests.
 
 ### Instructions
 
-1. Download the project:
+1. Clone the project:
 
 ```
-git clone git@gitlab.com:ntnu-dcst2002/todo-api-v2-with-tests.git
+git clone https://gitlab.com/ntnu-dcst2002/todo-api-v2-with-tests.git
 ```
 
-2. Install dependencies:
+2. Install dependencies with npm:
 
 ```
 cd todo-api-v2-with-tests
