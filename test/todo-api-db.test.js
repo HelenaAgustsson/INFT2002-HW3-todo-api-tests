@@ -31,7 +31,8 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-    testData.forEach(task => taskService.delete(task.id));
+    await testData.forEach(task => taskService.delete(task.id));
+    await taskService.delete(4);
 });
 
 describe("Fetch tasks (GET)", () => {
@@ -81,8 +82,8 @@ describe("Create new task (POST)", () => {
 });
 
 describe("Delete task (DELETE)", () => {
-    test("Delete second task (200 OK)", async () => {
-        const response = await axios.delete("/api/v1/tasks/4");
+    test("Delete task (200 OK)", async () => {
+        const response = await axios.delete("/api/v1/tasks/2");
         expect(response.status).toEqual(200);
     });
 });

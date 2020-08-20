@@ -56,7 +56,7 @@ describe("Create new task (POST)", () => {
 });
 
 describe("Delete task (DELETE)", () => {
-    test.skip("Delete second task (200 OK)", async () => {
+    test.skip("Delete task (200 OK)", async () => {
         //todo
     });
 });
