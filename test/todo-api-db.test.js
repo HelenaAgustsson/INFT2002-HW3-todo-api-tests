@@ -23,16 +23,18 @@ const testData = [
     { id: 3, title: "Gjør øving", done: 0 } 
 ];
 
-beforeAll((done) => todoApi.listen(3000, () => done()));
+let webServer;
+beforeAll(done => webServer = todoApi.listen(3000, () => done()));
 
 beforeEach(async () => {
     await testData.forEach(task => taskService.delete(task.id));
     testData.forEach(task => taskService.create(task));
 });
 
-afterAll(async () => {
+afterAll(async (done) => {
     await testData.forEach(task => taskService.delete(task.id));
     await taskService.delete(4);
+    webServer.close(() => pool.end(() => done()));
 });
 
 describe("Fetch tasks (GET)", () => {

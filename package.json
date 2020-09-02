@@ -4,7 +4,7 @@
   "description": "A simple Todo REST API",
   "main": "start.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "jest",
     "start": "nodemon start.js --exec babel-node"
   },
   "keywords": [],

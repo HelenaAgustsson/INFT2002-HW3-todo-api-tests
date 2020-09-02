@@ -13,7 +13,11 @@ const testData = [
     { id: 3, title: "Gjør øving", done: 0 },
 ];
 
-beforeAll((done) => todoApi.listen(3001, () => done()));
+let webServer;
+beforeAll(done => webServer = todoApi.listen(3001, () => done()));
+
+afterAll(done => webServer.close(() => done()));
+
 
 describe("Fetch tasks (GET)", () => {
     test("Fetch all tasks (200 OK)", async () => {
