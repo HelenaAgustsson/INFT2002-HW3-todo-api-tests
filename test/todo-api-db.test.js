@@ -11,9 +11,9 @@ jest.mock("../mysql-pool", () => {
     return mysql.createPool({
         host: "mysql.stud.ntnu.no",
         connectionLimit: 1,
-        user: "brukernavn_todoapi",
-        password: "brukernavn_todoapi",
-        database: "brukernavn_todoapi_db_test",
+        user: "username_todo",
+        password: "username_todo",
+        database: "username_todo_test",
     });
 });
 
@@ -27,13 +27,21 @@ let webServer;
 beforeAll(done => webServer = todoApi.listen(3000, () => done()));
 
 beforeEach(async () => {
-    await testData.forEach(task => taskService.delete(task.id));
-    testData.forEach(task => taskService.create(task));
+    await taskService.delete(1);
+    await taskService.delete(2);
+    await taskService.delete(3);
+
+    await taskService.create(testData[0]);
+    await taskService.create(testData[1]);
+    await taskService.create(testData[2]);
 });
 
 afterAll(async (done) => {
-    await testData.forEach(task => taskService.delete(task.id));
+    await taskService.delete(1);
+    await taskService.delete(2);
+    await taskService.delete(3);
     await taskService.delete(4);
+
     webServer.close(() => pool.end(() => done()));
 });
 
