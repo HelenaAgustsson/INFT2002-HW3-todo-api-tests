@@ -6,17 +6,6 @@ import taskService from "../task-service";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 axios.defaults.baseURL = "http://localhost:3000";
 
-jest.mock("../mysql-pool", () => {
-    const mysql = require("mysql");
-    return mysql.createPool({
-        host: "mysql.stud.ntnu.no",
-        connectionLimit: 1,
-        user: "username_todo",
-        password: "username_todo",
-        database: "username_todo_test",
-    });
-});
-
 const testData = [
     { id: 1, title: "Les leksjon", done: 1 },
     { id: 2, title: "Møt opp på forelesning", done: 0 },

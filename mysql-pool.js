@@ -1,11 +1,11 @@
 import mysql from "mysql";
 
 const pool = mysql.createPool({
-    host: "mysql.stud.ntnu.no",
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
     connectionLimit: 1,
-    user: "username_todo",
-    password: "username_todo",
-    database: "username_todo_dev",
 });
 
 export default pool;
