@@ -17,14 +17,24 @@ cd todo-api-v2-with-tests
 npm install
 ```
 
-3. Change the DB connection settings in mysql-pool.js and test/todo-api-db.test.js.
-4. Run the API:
+3. Create a *dev* database configuration file called "config.js" in the root directory with the following declarations:
+
+```javascript
+process.env.MYSQL_HOST = '...';
+process.env.MYSQL_USER= '...';
+process.env.MYSQL_PASSWORD = '...';
+process.env.MYSQL_DATABASE = '...';
+```
+
+4. Similarly, create a *test* database configuration file called "config.js" in the "test" directory. 
+
+5. Run the API:
 
 ```
 npm run start
 ```
 
-4. Execute the unit tests:
+6. Execute the unit tests:
 
 ```
 npm run test
