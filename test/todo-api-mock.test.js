@@ -14,10 +14,8 @@ const testData = [
 ];
 
 let webServer;
-beforeAll(done => webServer = todoApi.listen(3001, () => done()));
-
-afterAll(done => webServer.close(() => done()));
-
+beforeAll(() => webServer = todoApi.listen(3001));
+afterAll(() => webServer.close());
 
 describe("Fetch tasks (GET)", () => {
     test("Fetch all tasks (200 OK)", async () => {

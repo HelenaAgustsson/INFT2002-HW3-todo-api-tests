@@ -13,7 +13,7 @@ const testData = [
 ];
 
 let webServer;
-beforeAll(done => webServer = todoApi.listen(3000, () => done()));
+beforeAll(() => webServer = todoApi.listen(3000));
 
 beforeEach(async () => {
     /* We could do this:
@@ -27,8 +27,8 @@ beforeEach(async () => {
 
        But then every delete and create statement has to wait
        for the previous one to complete.
-       What we really want is to make sure all test data is deleted
-       before we insert new rows.
+       What we really want is to make sure all test data is deleted. When
+       this is done we insert new rows.
        Note: we have to use map instead of forEach, because map returns
        the promises, while forEach does not.
     */
@@ -39,11 +39,12 @@ beforeEach(async () => {
    await Promise.all(createActions);
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
     const deleteActions = [1, 2, 3, 4].map(id => taskService.delete(id));
     await Promise.all(deleteActions);
-
-    webServer.close(() => pool.end(() => done()));
+    
+    pool.end();
+    webServer.close();
 });
 
 describe("Fetch tasks (GET)", () => {
