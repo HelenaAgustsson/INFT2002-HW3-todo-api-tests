@@ -2,7 +2,6 @@ import axios from "axios";
 import todoApi from "../todo-api";
 import taskService from "../task-service";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
 axios.defaults.baseURL = "http://localhost:3001";
 
 jest.mock("../task-service");

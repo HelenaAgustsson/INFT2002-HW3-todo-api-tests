@@ -3,7 +3,6 @@ import pool from "../mysql-pool";
 import todoApi from "../todo-api";
 import taskService from "../task-service";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
 axios.defaults.baseURL = "http://localhost:3000";
 
 const testData = [
@@ -16,22 +15,6 @@ let webServer;
 beforeAll(() => webServer = todoApi.listen(3000));
 
 beforeEach(async () => {
-    /* We could do this:
-        await taskService.delete(1);
-        await taskService.delete(2);
-        await taskService.delete(3);
-
-        await taskService.create(testData[0]);
-        await taskService.create(testData[1]);
-        await taskService.create(testData[2]);
-
-       But then every delete and create statement has to wait
-       for the previous one to complete.
-       What we really want is to make sure all test data is deleted. When
-       this is done we insert new rows.
-       Note: we have to use map instead of forEach, because map returns
-       the promises, while forEach does not.
-    */
    const deleteActions = testData.map(task => taskService.delete(task.id));
    await Promise.all(deleteActions);
 
