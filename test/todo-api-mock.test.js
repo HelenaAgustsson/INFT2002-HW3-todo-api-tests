@@ -25,8 +25,12 @@ describe("Fetch tasks (GET)", () => {
         expect(response.data).toEqual(testData);
     });
 
-    test.skip("Fetch task (200 OK)", async () => {
-        //todo
+    test("Fetch task (200 OK)", async () => {
+        const expected = [testData[0]];
+        taskService.get = jest.fn(()=> Promise.resolve(testData));
+        const response = await axios.get("/api/v1/task/1");
+        expect(response.status).toEqual(200);
+        expect(response.data).toEqual(testData);
     });
 
     test.skip("Fetch all tasks (500 Internal Server Error)", async () => {

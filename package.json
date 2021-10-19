@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --setupFiles ./test/config",
     "start": "nodemon start.js --exec babel-node --require ./config"
+    
   },
   "repository": {
     "type": "git",
