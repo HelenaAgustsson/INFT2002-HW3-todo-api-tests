@@ -33,8 +33,11 @@ describe("Fetch tasks (GET)", () => {
         expect(response.data).toEqual(testData);
     });
 
-    test.skip("Fetch all tasks (500 Internal Server Error)", async () => {
-        //todo
+    test("Fetch all tasks (500 Internal Server Error)", async () => {
+        taskService.get = jest.fn(()=> Promise.reject());
+        await expect(() => axios.get("/api/v1/tasks"))
+        .rejects
+        .toThrow("Request failed with status code 500");
     });
 
     test.skip("Fetch task (404 Not Found)", async () => {
@@ -47,8 +50,12 @@ describe("Fetch tasks (GET)", () => {
 });
 
 describe("Create new task (POST)", () => {
-    test.skip("Create new task (201 Created)", async () => {
-        //todo
+    test("Create new task (201 Created)", async () => {
+        const newTask = {id: 4, title: "New task", done: false }
+        taskService.create = jest.fn(()=>Promise.resolve);
+
+        expect(response.status).toEqual(201);
+        expect(response.data).toEqual(testData);
     });
 
     test.skip("Create new task (400 Bad Request)", async () => {
