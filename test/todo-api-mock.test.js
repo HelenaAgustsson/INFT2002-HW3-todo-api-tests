@@ -59,12 +59,12 @@ describe("Fetch tasks (GET)", () => {
 });
 
 describe("Create new task (POST)", () => {
-    test.skip("Create new task (201 Created)", async () => {
-        const newTask = {id: 4, title: "New task", done: false }
-        taskService.create = jest.fn(()=>Promise.resolve);
-
+    test("Create new task (201 Created)", async () => {
+        const newTask = {id: 50, title: "New task", done: false, description: ' ' }
+        taskService.create = jest.fn(()=>Promise.resolve());
+        const response = await axios.post("/api/v1/tasks", newTask);
         expect(response.status).toEqual(201);
-        expect(response.data).toEqual(testData);
+        
     });
 
     test("Create new task (400 Bad Request)", async () => {
@@ -79,7 +79,7 @@ describe("Create new task (POST)", () => {
     });
 
     test("Create new task (500 Internal Server error)", async () => {
-        const newTask = { id: 4, title: "Another new task", done: false };
+        const newTask = { id: 4, title: "Another new task", done: false, description: ' ' };
         taskService.create = jest.fn(() => Promise.reject());
 
         await expect(() => axios.post("/api/v1/tasks", newTask))
